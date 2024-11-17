@@ -11,11 +11,13 @@ Say something to me:
 `;
 
 bot.start((ctx) => {
+    logger(ctx)
     ctx.reply("Hello. I am symple echo bot.");
     ctx.reply(helpMessage);
 });
 
 bot.command('echo', (ctx) => {
+    logger(ctx)
     let input = ctx.message.text;
 
     let inputArray = input.split(' ');
@@ -29,6 +31,12 @@ bot.command('echo', (ctx) => {
     }
     ctx.reply(message);
 })
+
+function logger(ctx) {
+    console.log("Someone used your bot!");
+    console.log(ctx.from);
+    console.log(ctx.from.username + " said:" + ctx.message.text);
+}
 
 bot.launch();
 
